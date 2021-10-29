@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Web Scraper</title>
+{% endblock %}
+
+{% block body %}
+
+<center>
+  <h2 class="app-title">Web Scraper with Flask</h2>
+  <div class="container">
+    <form action="/" method="POST" class="main-form form-display">
+      <input type="text" name="url" placeholder="Enter Wikipedia Url" id="url" class="form-input">
+      <input type="submit" value="Scarpe" class="form-btn primary-btn">
+    </form class="main-form form-display">
+    <form action="/download" method="GET">
+      <button name="downlaodBtn" type="submit" class="d-btn primary-btn">Download Excel</button>
+    </form class="main-form form-display">
+    <form action="/saveToGSheet">
+      <button>Save To Google Sheet</button>  
+    </form>
+    <div>
+      {{table|safe}}
+    </div>
+  </div>
+</center>
+
+{% endblock %}
