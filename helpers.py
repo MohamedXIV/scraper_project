@@ -37,6 +37,7 @@ class Helpers:
         res.encoding = "utf-8"
         soup = bs4.BeautifulSoup(res.text, "lxml")
         Helpers.page_title = soup.find("title").text
+        Helpers.static_final_links.clear()
         # print(Helpers.page_title)
         if isArabic is None:
             if soup.html["lang"] == "ar":
@@ -126,9 +127,10 @@ class Helpers:
         short_links = Helpers.linkShortner(Helpers.static_final_links)
 
         links_lst = [f'=HYPERLINK("{l}", "Link")' for l in short_links]
-
         df = Helpers.static_df  # pd.DataFrame(tables[table_index])
-        df["Links"] = links_lst
+        print(len(links_lst) == len(df[df.columns[0]]))
+        if len(links_lst) == len(df[df.columns[0]]):
+            df["Links"] = links_lst
         df.to_excel(file_name, encoding="utf-8")
 
     @staticmethod
@@ -145,7 +147,7 @@ class Helpers:
     @staticmethod
     def readExcelFile(file_name):
         df = pd.read_excel(file_name)
-        print(df.head())
+        #print(df.head())
 
     @staticmethod
     def makeHyperlink(path: str, name: str):
@@ -164,5 +166,5 @@ class Helpers:
             else:
                 t = l
             short_links.append(t)
-        print(short_links)
+        #print(short_links)
         return short_links
