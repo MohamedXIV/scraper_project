@@ -5,6 +5,7 @@ import pandas as pd
 import pyshorteners
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import math
 
 
 class Helpers:
@@ -19,6 +20,7 @@ class Helpers:
     excel_file_path = "./data/excel_files/"
     csv_file_path = "./data/csv_file.csv"
     json_file_path = "./data/json_file.json"
+    previous_value = 0
 
     @staticmethod
     def getTable(url: str, isArabic: bool = None):
@@ -72,7 +74,6 @@ class Helpers:
             final_rows_data.append(temp_l.copy())
             temp_l.clear()
 
-
     @staticmethod
     def getHyperlinks(wiki_table: list):
         temp_l = []
@@ -86,10 +87,6 @@ class Helpers:
             # print(temp_l)
             Helpers.static_final_links.append(temp_l.copy())
             temp_l.clear()
-        # print(Helpers.final_links_data)
-        #   final_links_data.append(temp_l)
-        #   temp_l.clear()
-        # print(final_links_data)
 
     @staticmethod
     def pdHtmlToExcelWLinks(url: str, table_index: int = 0):
@@ -147,7 +144,7 @@ class Helpers:
     @staticmethod
     def readExcelFile(file_name):
         df = pd.read_excel(file_name)
-        #print(df.head())
+        # print(df.head())
 
     @staticmethod
     def makeHyperlink(path: str, name: str):
@@ -166,5 +163,15 @@ class Helpers:
             else:
                 t = l
             short_links.append(t)
-        #print(short_links)
+        # print(short_links)
         return short_links
+
+    def simpleLoading(totalLenght, current):
+        totalLenght = totalLenght // 10
+        current = current // 10
+        if current != Helpers.previous_value:
+            print(
+                f"[{math.floor(current) * '='}{(totalLenght - math.floor(current)) * '.'}]"
+            )
+        Helpers.previous_value = current
+        return current

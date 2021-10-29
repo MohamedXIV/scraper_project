@@ -4,6 +4,7 @@ import json
 from helpers import Helpers
 from gsheet import saveToGSheet
 import webbrowser
+from mkepdf import makePDF
 
 app = Flask(__name__)
 
@@ -37,6 +38,16 @@ def save_to_gsheet():
     webbrowser.open_new_tab(saveToGSheet())
     return redirect(saveToGSheet())
 
+
+@app.route('/downloadPDF', methods=['GET'])
+def download_pdf():
+    makePDF()
+    return send_file('website.pdf', as_attachment=True)
+
+# @app.route('/hello_<name>.pdf')
+# def hello_pdf(name):
+#     # Make a PDF from another view
+#     return render_pdf(url_for('hello_html', name=name))
 
 def scrape_table(url):
   wiki_table = Helpers.getTable(url, False)
