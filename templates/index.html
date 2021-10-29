@@ -12,13 +12,15 @@
     <form action="/" method="POST" class="main-form form-display">
       <input type="text" name="url" placeholder="Enter Wikipedia Url" id="url" class="form-input">
       <input type="submit" value="Scarpe" class="form-btn primary-btn">
-    </form class="main-form form-display">
-    <form action="/download" method="GET">
-      <button name="downlaodBtn" type="submit" class="d-btn primary-btn">Download Excel</button>
-    </form class="main-form form-display">
-    <form action="/saveToGSheet">
-      <button>Save To Google Sheet</button>  
     </form>
+    <div>
+      <form action="/download" method="GET" class="main-form form-display">
+        <button name="downlaodBtn" type="submit" class="d-btn primary-btn">Download Excel</button>
+      </form>
+      <form action="/saveToGSheet" class="main-form form-display">
+        <button>Save To Google Sheet</button>
+      </form>
+    </div>
     <div>
       {{table|safe}}
     </div>

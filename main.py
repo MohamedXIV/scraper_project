@@ -35,7 +35,7 @@ def download_excel():
 def save_to_gsheet():
     saveToGSheet()
     webbrowser.open_new_tab(saveToGSheet())
-    return redirect('/')
+    return redirect(saveToGSheet())
 
 
 def scrape_table(url):
