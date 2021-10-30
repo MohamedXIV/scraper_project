@@ -11,14 +11,23 @@
   <div class="container">
     <form action="/" method="POST" class="main-form form-display">
       <input type="text" name="url" placeholder="Enter Wikipedia Url" id="url" class="form-input">
-      <input type="submit" value="Scarpe" class="form-btn primary-btn">
+      <input type="submit" value="Scrape" class="form-btn primary-btn">
     </form>
     <div class="forms-container">
-      <form action="/download" method="GET" class="main-form form-display">
-        <button name="downlaodBtn" type="submit" class="excel-btn primary-btn">Download Excel</button>
+      <form action="/downloadExcel" method="GET" class="main-form form-display">
+        <button name="downloadExBtn" type="submit" class="excel-btn primary-btn">Download Excel</button>
       </form>
       <form action="/saveToGSheet" class="main-form form-display">
         <button class="gsheet-btn primary-btn">Save To Google Sheet</button>
+      </form>
+      <form action="/downloadCSV" class="main-form form-display">
+        <button class="csv-btn primary-btn">Download CSV</button>
+      </form>
+      <form action="/downloadCSV/10" class="main-form form-display">
+        <button class="covers-10-btn primary-btn">Download 10 Covers</button>
+      </form>
+      <form action="/downloadCSV" class="main-form form-display">
+        <button class="covers-all-btn primary-btn">Download All Covers!</button>
       </form>
     </div>
     <div>

@@ -44,8 +44,7 @@ n_text = "الصلاصية"  # (df.iloc[0].iloc[0])
 
 with open("readme.txt", "w", encoding="utf-8") as f:
     f.write(n_text)
-with open("readme.txt", "r") as f:
-    e_text = f.read().encode('latin-1', 'replace').decode('latin-1')
+
 
 s_text = "العالم"
 

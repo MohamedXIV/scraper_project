@@ -99,6 +99,28 @@ body {
   text-shadow: 0px 0px 4px #f8f8f8;
 }
 
+.csv-btn{
+  padding: 4px;
+  min-height: 38px;
+  background-color: #c4c12b;
+  margin-bottom: 2%;
+}
+
+.covers-10-btn{
+  padding: 4px;
+  min-height: 38px;
+  background-color: #c4632b;
+  margin-bottom: 2%;
+}
+
+.covers-all-btn{
+  padding: 4px;
+  min-height: 38px;
+  background-color: #c42b2b;
+  margin-bottom: 2%;
+}
+
+
 table {
   border-radius: 5px;
   /* font-size: 1.2rem; */

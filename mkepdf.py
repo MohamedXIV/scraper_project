@@ -37,27 +37,31 @@ def makePDFFromString():
       """)
     html.write_pdf('example.pdf', font_config=fontConfig)
 
-def makePDFFromTemplate():
+def makePDFFromTemplate(iteration: int = 0):
     if Helpers.static_df is None:
       return
     novels = Helpers.static_df[Helpers.static_df.columns[0]].tolist()
     authors = Helpers.static_df[Helpers.static_df.columns[1]].tolist()
-    links = Helpers.static_final_links
+    links = [f"https://ar.wikipedia.org{l[0]}" for l in Helpers.static_final_links]
+    print("Making PDFs...")
     file = open('static/base.txt', 'r', encoding='utf-8')
     base_file = file.read()
     file.close()
-    for idx, novel in enumerate(novels):
+    itr = len(novels)
+    if iteration != 0:
+       itr = iteration
+    for idx in range(itr):
       text_file = open('./data/cover_templates/base_cover.html', 'w', encoding='utf-8')
       text_file.write(f"{base_file}"+f"""
           <body>
             <center>
               <div>
                 <div>
-                  <a href="link">
+                  <a href="{links[idx]}">
                     <img src="../qrcodes/{idx}.png" alt="qr-{idx}">
                   </a>
                   <a href="{links[idx]}">
-                    <h1>{novel}</h1>
+                    <h1>{novels[idx]}</h1>
                   </a>
                   <h2>
                     {authors[idx]}
@@ -70,4 +74,5 @@ def makePDFFromTemplate():
           </html>
                 """)
       text_file.close()
-      makePDFFromFile(novel)
+      Helpers.simpleLoading(itr, idx)
+      makePDFFromFile(novels[idx])

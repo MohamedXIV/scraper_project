@@ -7,6 +7,7 @@ from gsheet import saveToGSheet
 import webbrowser
 from mkepdf import makePDFFromString, makePDFFromFile, makePDFFromTemplate
 from mkeqr import saveQRImages
+from mkezip import make_zip_file
 
 app = Flask(__name__)
 
@@ -14,9 +15,6 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
   if request.method == "GET":
-      # url = request.form['url']
-      # scrape_table(url)
-      # redirect('/')
       return render_template("index.html")
   elif request.method == "POST":
     url = request.form['url']
@@ -24,14 +22,12 @@ def index():
     Helpers.getHyperlinks(wiki_table)
     return render_template('index.html', table=Helpers.getHtmlTable(url)) 
 
-@app.route('/download', methods=['GET', 'POST'])
+@app.route('/downloadExcel', methods=['GET', 'POST'])
 def download_excel():
   if request.method == 'GET':
     Helpers.pdHtmlToExcel()
-
     return send_file(f'{Helpers.excel_file_path}{Helpers.page_title}.xlsx', as_attachment=True)
-  elif request.method == 'POST':
-    return 'Downloaded'
+
 
 
 @app.route('/saveToGSheet')
@@ -46,17 +42,15 @@ def download_pdf():
     makePDFFromFile()
     return send_file('website.pdf', as_attachment=True)
 
-@app.route('/hello_<name>.pdf')
-def hello_pdf(name):
-    # Make a PDF from another view
-    return render_pdf(url_for('hello_html', name=name))
-
 
 @app.route('/downloadPDFCovers', methods=['GET'])
-def download_pdf_covers():
+@app.route('/downloadPDFCovers/<int:itr>', methods=['GET'])
+def download_pdf_covers(itr):
     saveQRImages()
-    makePDFFromTemplate()
-    return "Congrats!, you have downloaded the PDFs"
+    makePDFFromTemplate(itr)
+    make_zip_file()
+    return send_file(f'{Helpers.zip_file_path}covers.zip', as_attachment=True)
+    #"Congrats!, you have downloaded the PDFs"
 
 
 

@@ -22,6 +22,7 @@ class Helpers:
     json_file_path = "./data/json_file.json"
     qr_images_path = "./data/qrcodes/"
     pdf_file_path = "./data/covers/"
+    zip_file_path = "./data/zip_files/"
     previous_value = 0
 
     @staticmethod
