@@ -126,12 +126,12 @@ td {
 thead th {
   color: #ffffff;
   /* text-shadow: 0px 2px 1px #2e2d2d; */
-  background: #AB6087;
+  background: #ab6087;
 }
 
 thead th:nth-child(odd) {
   color: #2e2d2d;
-  background: #59F7B0;
+  background: #59f7b0;
 }
 
 tr:nth-child(even) {

@@ -20,6 +20,7 @@ class Helpers:
     excel_file_path = "./data/excel_files/"
     csv_file_path = "./data/csv_file.csv"
     json_file_path = "./data/json_file.json"
+    qr_images_path = './data/qrcodes/'
     previous_value = 0
 
     @staticmethod

@@ -10,21 +10,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500&display=swap" rel="stylesheet">
   <title>Document</title>
+  <style>
+    body {
+      background-color: #fff;
+    }
+
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 80%;
+    }
+  </style>
 </head>
 
 <body>
   <center>
-    <div>
+    <div class="qr-image">
       <div>
-        <!-- <img src="../data/qrcodes/0.png" alt="qr-0"> -->
-        <a href="#">
-          <h2>الرواية الاولى</h2>
+        <a href="https://www.google.com/">
+          <img src="../data/qrcodes/0.png" alt="qr-0">
         </a>
-        <a href="#pdf">Test</a>
+        <a href="https://www.google.com/">
+          <h2>{{ novel }}</h2>
+        </a>
         <link rel=attachment>
         <a rel=attachment>attachment</a>
       </div>
     </div>
+    <nav><a href="{{ url_for('hello_pdf', name=name) }}">Get as PDF</a></nav>
   </center>
 
 </body>

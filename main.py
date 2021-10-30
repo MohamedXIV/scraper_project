@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, redirect, send_file
+from flask import Flask, render_template, request, redirect, send_file, url_for
+from flask_weasyprint import HTML, render_pdf
 import requests
 import json
 from helpers import Helpers
 from gsheet import saveToGSheet
 import webbrowser
-from mkepdf import makePDF
+from mkepdf import makePDFFromString
 
 app = Flask(__name__)
 
@@ -41,13 +42,13 @@ def save_to_gsheet():
 
 @app.route('/downloadPDF', methods=['GET'])
 def download_pdf():
-    makePDF()
-    return send_file('website.pdf', as_attachment=True)
+    makePDFFromString()
+    return send_file('example.pdf', as_attachment=True)
 
-# @app.route('/hello_<name>.pdf')
-# def hello_pdf(name):
-#     # Make a PDF from another view
-#     return render_pdf(url_for('hello_html', name=name))
+@app.route('/hello_<name>.pdf')
+def hello_pdf(name):
+    # Make a PDF from another view
+    return render_pdf(url_for('hello_html', name=name))
 
 def scrape_table(url):
   wiki_table = Helpers.getTable(url, False)
