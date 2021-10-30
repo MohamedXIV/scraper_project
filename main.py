@@ -5,7 +5,7 @@ import json
 from helpers import Helpers
 from gsheet import saveToGSheet
 import webbrowser
-from mkepdf import makePDFFromString
+from mkepdf import makePDFFromString, makePDFFromFile
 
 app = Flask(__name__)
 
@@ -42,8 +42,8 @@ def save_to_gsheet():
 
 @app.route('/downloadPDF', methods=['GET'])
 def download_pdf():
-    makePDFFromString()
-    return send_file('example.pdf', as_attachment=True)
+    makePDFFromFile()
+    return send_file('website.pdf', as_attachment=True)
 
 @app.route('/hello_<name>.pdf')
 def hello_pdf(name):

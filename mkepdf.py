@@ -37,6 +37,25 @@ def makePDFFromString():
     html.write_pdf('example.pdf', font_config=fontConfig)
 
 
-#makePDFFromFile()
-makePDFFromString()
+htmlstr =  """ 
+        <center>
+      <div class="qr-image">
+        <div>
+          <a href="https://www.google.com/">
+            <img src="./data/qrcodes/0.png" alt="qr-0">
+          </a>
+          <a href="https://www.google.com/">
+            <h2>{{ novel }}</h2>
+          </a>
+          <link rel=attachment>
+          <a rel=attachment>attachment</a>
+        </div>
+      </div>
+      <nav><a href="{{ url_for('hello_pdf', name=name) }}">Get as PDF</a></nav>
+    </center>
+      """
+
+# pdfkit.from_file('./templates/cover.html', 'sample.pdf')
+makePDFFromFile()
+# makePDFFromString()
 
