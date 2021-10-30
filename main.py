@@ -5,7 +5,8 @@ import json
 from helpers import Helpers
 from gsheet import saveToGSheet
 import webbrowser
-from mkepdf import makePDFFromString, makePDFFromFile
+from mkepdf import makePDFFromString, makePDFFromFile, makePDFFromTemplate
+from mkeqr import saveQRImages
 
 app = Flask(__name__)
 
@@ -49,6 +50,16 @@ def download_pdf():
 def hello_pdf(name):
     # Make a PDF from another view
     return render_pdf(url_for('hello_html', name=name))
+
+
+@app.route('/downloadPDFCovers', methods=['GET'])
+def download_pdf_covers():
+    saveQRImages()
+    makePDFFromTemplate()
+    return "Congrats!, you have downloaded the PDFs"
+
+
+
 
 def scrape_table(url):
   wiki_table = Helpers.getTable(url, False)

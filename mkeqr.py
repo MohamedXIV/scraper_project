@@ -15,6 +15,8 @@ def makeQrcode(data: str, path: str = None):
   
 
 def saveQRImages():
+    if Helpers.static_final_links is None:
+        return
     links = Helpers.static_final_links
     print('Saving Images....')
     for idx, link in enumerate(links):

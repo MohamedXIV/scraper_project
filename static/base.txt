@@ -26,24 +26,3 @@
     }
   </style>
 </head>
-
-<body>
-  <center>
-    <div>
-      <div>
-        <a href="{link}">
-          <img src="../data/qrcodes/{idx}.png" alt="qr-{idx}">
-        </a>
-        <a href="https://www.google.com/">
-          <h1>{novel}</h1>
-        </a>
-        <h2>
-          {author}
-        </h2>
-      </div>
-    </div>
-  </center>
-
-</body>
-
-</html>
