@@ -7,10 +7,34 @@
 {% block body %}
 
 <center>
-  <h2 class="app-title">Web Scraper with Flask</h2>
+  <a href="/">
+    <h2 class="app-title">Web Scraper with Flask</h2>
+  </a>
   <div class="container">
+    <div class="pre-defined-container">
+      <form action="/loadTable/top100arnvl" method="POST" class="main-form form-display">
+        <input id="top100arnvl" type="text" name="top100arnvl"
+          value="https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D8%A6%D9%85%D8%A9_%D8%A3%D9%81%D8%B6%D9%84_%D9%85%D8%A6%D8%A9_%D8%B1%D9%88%D8%A7%D9%8A%D8%A9_%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9">
+        <button class="pre-defined-btn" type="submit">قائمة أفضل مئة رواية عربية</button>
+      </form>
+      <form action="/loadTable/bestgames" method="POST" class="main-form form-display">
+        <input id="bestgames" type="text" name="bestgames"
+          value="https://en.wikipedia.org/wiki/List_of_best-selling_video_games">
+        <button class="pre-defined-btn" type="submit">Best-Selling Video Games</button>
+      </form>
+      <form action="/loadTable/bestauto" method="POST" class="main-form form-display">
+        <input id="bestauto" type="text" name="bestauto"
+          value="https://en.wikipedia.org/wiki/List_of_best-selling_automobiles">
+        <button class="pre-defined-btn" type="submit">Best-Selling Automobiles</button>
+      </form>
+      <form action="/loadTable/premierleague" method="POST" class="main-form form-display">
+        <input id="premierleague" type="text" name="premierleague" value="https://en.wikipedia.org/wiki/2020%E2%80%9321_Premier_League">
+        <button class="pre-defined-btn" type="submit">2020–21 Premier League</button>
+      </form>
+    </div>
     <form action="/" method="POST" class="main-form form-display">
-      <input type="text" name="url" placeholder="Enter Wikipedia Url" id="url" class="form-input">
+      <input type="text" name="url" placeholder="Enter Wikipedia Url" id="url" class="form-input" ,
+        value="https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D8%A6%D9%85%D8%A9_%D8%A3%D9%81%D8%B6%D9%84_%D9%85%D8%A6%D8%A9_%D8%B1%D9%88%D8%A7%D9%8A%D8%A9_%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9">
       <input type="submit" value="Scrape" class="form-btn primary-btn">
     </form>
     <div class="forms-container">
@@ -20,13 +44,16 @@
       <form action="/saveToGSheet" class="main-form form-display">
         <button class="gsheet-btn primary-btn">Save To Google Sheet</button>
       </form>
+      <form action="/getJson" class="main-form form-display">
+        <button class="json-btn primary-btn">Get JSON</button>
+      </form>
       <form action="/downloadCSV" class="main-form form-display">
         <button class="csv-btn primary-btn">Download CSV</button>
       </form>
-      <form action="/downloadCSV/10" class="main-form form-display">
+      <form action="/downloadPDFCovers/10" class="main-form form-display">
         <button class="covers-10-btn primary-btn">Download 10 Covers</button>
       </form>
-      <form action="/downloadCSV" class="main-form form-display">
+      <form action="/downloadPDFCovers" class="main-form form-display">
         <button class="covers-all-btn primary-btn">Download All Covers!</button>
       </form>
     </div>
