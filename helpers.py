@@ -17,9 +17,10 @@ class Helpers:
     page_title = ""
     static_df = pd.DataFrame()
     isArabic = False
+    static_url = ''
     excel_file_path = "./data/excel_files/"
-    csv_file_path = "./data/csv_file.csv"
-    json_file_path = "./data/json_file.json"
+    csv_file_path = "./data/csv_files/"
+    json_file_path = "./data/json_files/"
     qr_images_path = "./data/qrcodes/"
     pdf_file_path = "./data/covers/"
     zip_file_path = "./data/zip_files/"
@@ -40,6 +41,7 @@ class Helpers:
         res = requests.get(url)
         res.raise_for_status()
         res.encoding = "utf-8"
+        Helpers.static_url = url
         soup = bs4.BeautifulSoup(res.text, "lxml")
         Helpers.page_title = soup.find("title").text
         Helpers.static_final_links.clear()
@@ -132,6 +134,22 @@ class Helpers:
         if len(links_lst) == len(df[df.columns[0]]):
             df["Links"] = links_lst
         df.to_excel(file_name, encoding="utf-8")
+
+    @staticmethod
+    def pdHtmlToJson(url: str = None, table_index: int = 0, isArabic: bool = False):
+        file_name = f"{Helpers.excel_file_path}{Helpers.page_title}.json"
+        tables = pd.read_html(Helpers.static_url, attrs={"class": "wikitable"})
+        df = pd.DataFrame(tables[table_index])
+        
+        return df.to_json(orient="index", force_ascii=False)
+
+    @staticmethod
+    def pdHtmlToCsv(url: str = None, table_index: int = 0):
+        file_name = f"{Helpers.csv_file_path}{Helpers.page_title}.csv"
+
+        df = Helpers.static_df  # pd.DataFrame(tables[table_index])
+        
+        return df.to_csv(file_name, sep='\t')
 
     @staticmethod
     def getHtmlTable(url: str, table_index: int = 0):
